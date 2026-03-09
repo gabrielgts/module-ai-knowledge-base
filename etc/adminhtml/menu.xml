@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Gtstudio_AiKnowledgeBase::management"
+             title="Knowledge Base"
+             module="Gtstudio_AiKnowledgeBase"
+             sortOrder="30"
+             parent="Gtstudio_AiAgents::management"
+             action="ai_knowledge_base/aiknowledgebase/index"
+             resource="Gtstudio_AiKnowledgeBase::management"
+             translate="title"/>
+    </menu>
+</config>

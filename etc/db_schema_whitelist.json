@@ -1,0 +1,21 @@
+{
+  "gtstudio_ai_knowledge_base": {
+    "column": {
+      "entity_id": true,
+      "title": true,
+      "content": true,
+      "tags": true,
+      "is_active": true,
+      "agent_ids": true,
+      "created_at": true,
+      "updated_at": true
+    },
+    "index": {
+      "GTSTUDIO_AI_KNOWLEDGE_BASE_ENTITY_ID": true,
+      "GTSTUDIO_AI_KNOWLEDGE_BASE_FULLTEXT": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
+}

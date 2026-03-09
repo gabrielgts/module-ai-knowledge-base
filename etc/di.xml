@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Gtstudio\AiKnowledgeBase\Api\Data\AiKnowledgeBaseInterface"
+                type="Gtstudio\AiKnowledgeBase\Model\Data\AiKnowledgeBaseData"/>
+    <preference for="Gtstudio\AiKnowledgeBase\Api\GetAiKnowledgeBaseListInterface"
+                type="Gtstudio\AiKnowledgeBase\Query\AiKnowledgeBase\GetListQuery"/>
+    <preference for="Gtstudio\AiKnowledgeBase\Api\SaveAiKnowledgeBaseInterface"
+                type="Gtstudio\AiKnowledgeBase\Command\AiKnowledgeBase\SaveCommand"/>
+    <preference for="Gtstudio\AiKnowledgeBase\Api\DeleteAiKnowledgeBaseByIdInterface"
+                type="Gtstudio\AiKnowledgeBase\Command\AiKnowledgeBase\DeleteByIdCommand"/>
+    <preference for="Gtstudio\AiKnowledgeBase\Api\Data\AiKnowledgeBaseSearchResultsInterface"
+                type="Gtstudio\AiKnowledgeBase\Model\AiKnowledgeBaseSearchResults"/>
+
+    <!-- Register knowledge_base_search executor in ToolExecutorPool -->
+    <type name="Gtstudio\AiAgents\Model\Tool\ToolExecutorPool">
+        <arguments>
+            <argument name="executors" xsi:type="array">
+                <item name="knowledge_base_search" xsi:type="object">Gtstudio\AiKnowledgeBase\Model\Tool\AiKnowledgeBaseSearchExecutor</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ai_knowledge_base_form.ai_knowledge_base_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Ai Knowledge Base Form</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <namespace>ai_knowledge_base_form</namespace>
+        <dataScope>data.general</dataScope>
+        <deps>
+            <dep>ai_knowledge_base_form.ai_knowledge_base_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="save" class="Gtstudio\AiKnowledgeBase\Block\Form\AiKnowledgeBase\Save"/>
+            <button name="back" class="Gtstudio\AiKnowledgeBase\Block\Form\AiKnowledgeBase\Back"/>
+            <button name="delete" class="Gtstudio\AiKnowledgeBase\Block\Form\AiKnowledgeBase\Delete"/>
+        </buttons>
+    </settings>
+    <dataSource name="ai_knowledge_base_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="ai_knowledge_base/aiknowledgebase/save"/>
+        </settings>
+        <dataProvider class="Gtstudio\AiKnowledgeBase\Ui\DataProvider\AiKnowledgeBaseDataProvider"
+                      name="ai_knowledge_base_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="entity_id" sortOrder="0" formElement="hidden">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Entity ID</label>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </field>
+        <field name="title" sortOrder="00" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">title</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="pdf_file" sortOrder="05" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Gtstudio_AiKnowledgeBase/js/pdf-uploader</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="string">ai_knowledge_base/aiknowledgebase/uploadPdf</item>
+                    </item>
+                    <item name="maxFileSize" xsi:type="number">52428800</item>
+                    <item name="allowedExtensions" xsi:type="string">pdf</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Upload PDF Document</label>
+                <notice translate="true">Upload a PDF file to automatically extract content and populate the fields below</notice>
+            </settings>
+        </field>
+        <field name="content" sortOrder="10" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">content</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Content</label>
+                <dataScope>content</dataScope>
+            </settings>
+        </field>
+        <field name="tags" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">tags</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Tags</label>
+                <dataScope>tags</dataScope>
+            </settings>
+        </field>
+        <field name="agent_ids" sortOrder="25" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">agent_ids</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Agents</label>
+                <dataScope>agent_ids</dataScope>
+                <notice translate="true">Agents that may use this document as context. Leave empty to make it available to all agents.</notice>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Gtstudio\AiKnowledgeBase\Model\Source\AgentOptions"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="is_active" sortOrder="30" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">is_active</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>bool</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

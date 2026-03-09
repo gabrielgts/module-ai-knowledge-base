@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/ai-knowledge-base/get-list" method="GET">
+        <service class="Gtstudio\AiKnowledgeBase\Api\GetAiKnowledgeBaseListInterface" method="execute"/>
+        <resources>
+            <resource ref="Gtstudio_AiKnowledgeBase::management"/>
+        </resources>
+    </route>
+    <route url="/V1/ai-knowledge-base/save" method="POST">
+        <service class="Gtstudio\AiKnowledgeBase\Api\SaveAiKnowledgeBaseInterface" method="execute"/>
+        <resources>
+            <resource ref="Gtstudio_AiKnowledgeBase::management"/>
+        </resources>
+    </route>
+    <route url="/V1/ai-knowledge-base/delete/:entity_id" method="DELETE">
+        <service class="Gtstudio\AiKnowledgeBase\Api\DeleteAiKnowledgeBaseByIdInterface" method="execute"/>
+        <resources>
+            <resource ref="Gtstudio_AiKnowledgeBase::management"/>
+        </resources>
+    </route>
+</routes>
