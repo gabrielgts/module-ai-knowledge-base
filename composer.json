@@ -1,6 +1,5 @@
 {
     "name": "gtstudio/module-ai-knowledge-base",
-    "version": "1.0.0",
     "description": "Knowledge base management for Magento 2. Upload documents (PDF, TXT) that AI agents can retrieve as context before answering queries.",
     "type": "magento2-module",
     "license": "BUSL-1.1",
