@@ -8,6 +8,7 @@ use Gtstudio\AiKnowledgeBase\Model\Service\PdfParserService;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Request\Http as HttpRequest;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem;
@@ -16,15 +17,9 @@ use Magento\MediaStorage\Model\File\UploaderFactory;
 /**
  * Upload a PDF document and return its extracted text and metadata as JSON.
  *
- * The file is moved to a temporary directory, parsed, then deleted.
- * Only the extracted text and metadata are returned — the PDF itself is
- * never persisted beyond the extraction step.
  */
 class UploadPdf extends Action implements HttpPostActionInterface
 {
-    /**
-     * Authorization level of a basic admin session.
-     */
     public const ADMIN_RESOURCE = 'Gtstudio_AiKnowledgeBase::management';
 
     private const ALLOWED_EXTENSIONS = ['pdf'];
@@ -103,27 +98,34 @@ class UploadPdf extends Action implements HttpPostActionInterface
     }
 
     /**
-     * Try common field names used by Magento's fileUploader component.
+     * Resolve the fileUploader component.
      *
-     * The component may send the file under 'pdf_file', 'file', or the first
-     * available key. UploaderFactory validates the upload is genuine HTTP POST.
      *
      * @return \Magento\MediaStorage\Model\File\Uploader
      * @throws LocalizedException
      */
     private function resolveUploader(): \Magento\MediaStorage\Model\File\Uploader
     {
+        /** @var HttpRequest $request */
+        $request    = $this->getRequest();
+        $filesArray = $request->getFiles()->toArray();
+
+        $group  = $filesArray['general'] ?? $filesArray;
+        $prefix = isset($filesArray['general']) ? 'general[' : '';
+
         $candidates = array_unique(array_merge(
-            ['qqfile', 'pdf_file', 'file'],
-            array_keys($_FILES)
+            ['pdf_file', 'file', 'qqfile'],
+            array_keys($group)
         ));
 
         foreach ($candidates as $fileId) {
-            if (!isset($_FILES[$fileId]) || $_FILES[$fileId]['error'] === UPLOAD_ERR_NO_FILE) {
+            if (empty($group[$fileId]['name'])) {
                 continue;
             }
+
+            $uploaderKey = $prefix ? $prefix . $fileId . ']' : $fileId;
             try {
-                return $this->uploaderFactory->create(['fileId' => $fileId]);
+                return $this->uploaderFactory->create(['fileId' => $uploaderKey]);
             } catch (\Exception) {
                 continue;
             }

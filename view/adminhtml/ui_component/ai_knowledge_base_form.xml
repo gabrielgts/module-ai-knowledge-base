@@ -36,7 +36,7 @@
         <settings>
             <label translate="true">General</label>
         </settings>
-        <field name="entity_id" sortOrder="0" formElement="hidden">
+        <field name="entity_id" sortOrder="60" formElement="hidden">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">entity_id</item>
@@ -48,7 +48,7 @@
                 <dataScope>entity_id</dataScope>
             </settings>
         </field>
-        <field name="title" sortOrder="00" formElement="input">
+        <field name="title" sortOrder="15" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">title</item>
@@ -60,7 +60,7 @@
                 <dataScope>title</dataScope>
             </settings>
         </field>
-        <field name="pdf_file" sortOrder="05" formElement="fileUploader">
+        <field name="pdf_file" sortOrder="17" formElement="fileUploader">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Gtstudio_AiKnowledgeBase/js/pdf-uploader</item>
@@ -76,7 +76,7 @@
                 <notice translate="true">Upload a PDF file to automatically extract content and populate the fields below</notice>
             </settings>
         </field>
-        <field name="content" sortOrder="10" formElement="textarea">
+        <field name="content" sortOrder="30" formElement="textarea">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">content</item>
@@ -100,7 +100,7 @@
                 <dataScope>tags</dataScope>
             </settings>
         </field>
-        <field name="agent_ids" sortOrder="25" formElement="multiselect">
+        <field name="agent_ids" sortOrder="20" formElement="multiselect">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">agent_ids</item>
@@ -120,7 +120,7 @@
                 </multiselect>
             </formElements>
         </field>
-        <field name="is_active" sortOrder="30" formElement="checkbox">
+        <field name="is_active" sortOrder="10" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">is_active</item>
