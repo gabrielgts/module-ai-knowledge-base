@@ -2,6 +2,23 @@
 
 Document management for AI agents in Magento 2. Upload files that agents can retrieve as context before answering queries — enabling retrieval-augmented generation (RAG) without a vector database.
 
+## Preview
+
+![AiKnowledgeBase — uploading a PDF and querying an agent that retrieves relevant excerpts](docs/images/aiknowledgebase-preview.gif)
+
+## AI Studio Ecosystem
+
+Part of the **AI Studio** suite for Magento 2. See all modules:
+
+| Module | Repository | Description |
+|--------|-----------|-------------|
+| **Gtstudio_AiConnector** | [module-aiconnector](https://github.com/gabrielgts/module-aiconnector) | Core AI provider abstraction |
+| **Gtstudio_AiAgents** | [module-ai-agents](https://github.com/gabrielgts/module-ai-agents) | Agent & tool orchestration, cron scheduling, execution log |
+| **Gtstudio_AiWidgets** | [module-ai-widgets](https://github.com/gabrielgts/module-ai-widgets) | Floating admin chat widget + PageBuilder AI generator |
+| **Gtstudio_AiDataQuery** | [module-ai-data-query](https://github.com/gabrielgts/module-ai-data-query) | Natural-language store analytics (privacy-first) |
+| **Gtstudio_AiKnowledgeBase** | *(this module)* | Document upload & RAG retrieval for agents |
+| **Gtstudio_AiDashboard** | *(coming soon)* | AI-powered KPI dashboard with ML insights |
+
 ## What It Does
 
 - Upload and manage documents (PDF, TXT) in the Magento admin
@@ -19,11 +36,9 @@ Document management for AI agents in Magento 2. Upload files that agents can ret
 ## Installation
 
 ```bash
+composer require gtstudio/module-ai-knowledge-base
 php bin/magento module:enable Gtstudio_AiKnowledgeBase
 php bin/magento setup:upgrade
-php bin/magento setup:di:compile
-php bin/magento setup:static-content:deploy -f --area adminhtml
-php bin/magento cache:flush
 ```
 
 ## Usage
