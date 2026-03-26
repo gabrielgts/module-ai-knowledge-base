@@ -26,8 +26,7 @@ class GenericButton
      */
     public function __construct(
         Context $context
-    )
-    {
+    ) {
         $this->context = $context;
         $this->urlBuilder = $context->getUrlBuilder();
     }
@@ -59,8 +58,7 @@ class GenericButton
         string $onclick = '',
         array  $dataAttribute = [],
         int    $sortOrder = 0
-    ): array
-    {
+    ): array {
         return [
             'label' => $label,
             'on_click' => $onclick,

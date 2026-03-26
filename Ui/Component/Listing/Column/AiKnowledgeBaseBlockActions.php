@@ -42,8 +42,7 @@ class AiKnowledgeBaseBlockActions extends Column
         UrlInterface       $urlBuilder,
         array              $components = [],
         array              $data = []
-    )
-    {
+    ) {
         parent::__construct(
             $context,
             $uiComponentFactory,
@@ -102,8 +101,7 @@ class AiKnowledgeBaseBlockActions extends Column
         string  $label,
         ?string $dialogTitle = null,
         ?string $dialogMessage = null
-    ): array
-    {
+    ): array {
         $data = [
             'href' => $url,
             'label' => $label,

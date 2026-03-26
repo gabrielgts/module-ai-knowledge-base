@@ -37,8 +37,7 @@ class Delete extends Action implements HttpPostActionInterface, HttpGetActionInt
     public function __construct(
         Context $context,
         DeleteAiKnowledgeBaseByIdInterface $deleteByIdCommand
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->deleteByIdCommand = $deleteByIdCommand;
     }

@@ -14,9 +14,9 @@ class AiKnowledgeBaseSearchResults extends SearchResults implements AiKnowledgeB
      * Set items list.
      *
      * @param array $items
-     *
      * @return AiKnowledgeBaseSearchResultsInterface
      */
+    // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
     public function setItems(array $items): AiKnowledgeBaseSearchResultsInterface
     {
         return parent::setItems($items);
@@ -27,6 +27,7 @@ class AiKnowledgeBaseSearchResults extends SearchResults implements AiKnowledgeB
      *
      * @return array
      */
+    // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
     public function getItems(): array
     {
         return parent::getItems();

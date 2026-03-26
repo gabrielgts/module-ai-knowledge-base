@@ -13,6 +13,7 @@ interface DeleteAiKnowledgeBaseByIdInterface
 {
     /**
      * Delete AiKnowledgeBase.
+     *
      * @param int $entityId
      * @return void
      * @throws CouldNotDeleteException

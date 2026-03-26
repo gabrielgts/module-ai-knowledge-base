@@ -100,7 +100,6 @@ class UploadPdf extends Action implements HttpPostActionInterface
     /**
      * Resolve the fileUploader component.
      *
-     *
      * @return \Magento\MediaStorage\Model\File\Uploader
      * @throws LocalizedException
      */

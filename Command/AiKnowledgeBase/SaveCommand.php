@@ -40,8 +40,7 @@ class SaveCommand implements SaveAiKnowledgeBaseInterface
         LoggerInterface $logger,
         AiKnowledgeBaseModelFactory $modelFactory,
         AiKnowledgeBaseResource $resource
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->modelFactory = $modelFactory;
         $this->resource = $resource;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Gtstudio\AiKnowledgeBase\Model\Service;
 
+use Magento\Framework\Exception\LocalizedException;
 use Smalot\PdfParser\Parser;
 
 /**
@@ -16,8 +17,12 @@ class PdfParserService
 {
     private const MAX_FILE_SIZE = 52428800; // 50 MB
 
+    /** @var Parser */
     private Parser $parser;
 
+    /**
+     * Initialize the PDF parser instance.
+     */
     public function __construct()
     {
         $this->parser = new Parser();
@@ -27,17 +32,19 @@ class PdfParserService
      * Parse a PDF file and return both extracted text and document metadata.
      *
      * @param string $filePath Absolute path to the PDF file.
-     * @return array{text: string, metadata: array{title: string, subject: string, keywords: string, author: string, creator: string, pages: int}}
-     * @throws \Exception
+     * @return array
+     * @throws LocalizedException
      */
     public function parse(string $filePath): array
     {
+        // phpcs:ignore Magento2.Functions.DiscouragedFunction.Discouraged
         if (!file_exists($filePath)) {
-            throw new \Exception('File not found: ' . $filePath);
+            throw new LocalizedException(__('File not found: %1', $filePath));
         }
 
+        // phpcs:ignore Magento2.Functions.DiscouragedFunction.Discouraged
         if (filesize($filePath) > self::MAX_FILE_SIZE) {
-            throw new \Exception('File size exceeds the 50 MB limit.');
+            throw new LocalizedException(__('File size exceeds the 50 MB limit.'));
         }
 
         try {
@@ -55,8 +62,10 @@ class PdfParserService
                     'pages'    => count($pdf->getPages()),
                 ],
             ];
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to parse PDF: ' . $e->getMessage());
+        } catch (LocalizedException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            throw new LocalizedException(__('Failed to parse PDF: %1', $e->getMessage()));
         }
     }
 
@@ -65,7 +74,7 @@ class PdfParserService
      *
      * @param string $filePath
      * @return string
-     * @throws \Exception
+     * @throws LocalizedException
      */
     public function extractText(string $filePath): string
     {
@@ -77,7 +86,7 @@ class PdfParserService
      *
      * @param string $filePath
      * @return array
-     * @throws \Exception
+     * @throws LocalizedException
      */
     public function extractMetadata(string $filePath): array
     {
@@ -93,6 +102,7 @@ class PdfParserService
     private function cleanText(string $text): string
     {
         $text = preg_replace('/\s+/', ' ', $text);
+        // phpcs:ignore Magento2.Functions.DiscouragedFunction.Discouraged
         $text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
         $text = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/', '', $text);
         return trim($text);

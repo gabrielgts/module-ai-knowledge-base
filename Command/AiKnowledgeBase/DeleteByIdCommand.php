@@ -41,8 +41,7 @@ class DeleteByIdCommand implements DeleteAiKnowledgeBaseByIdInterface
         LoggerInterface $logger,
         AiKnowledgeBaseModelFactory $modelFactory,
         AiKnowledgeBaseResource $resource
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->modelFactory = $modelFactory;
         $this->resource = $resource;
@@ -60,7 +59,8 @@ class DeleteByIdCommand implements DeleteAiKnowledgeBaseByIdInterface
 
             if (!$model->getData(AiKnowledgeBaseInterface::ENTITY_ID)) {
                 throw new NoSuchEntityException(
-                    __('Could not find AiKnowledgeBase with id: `%id`',
+                    __(
+                        'Could not find AiKnowledgeBase with id: `%id`',
                         [
                             'id' => $entityId
                         ]

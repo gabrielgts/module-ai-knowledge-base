@@ -14,6 +14,7 @@ interface GetAiKnowledgeBaseListInterface
 {
     /**
      * Get AiKnowledgeBase list by search criteria.
+     *
      * @param \Magento\Framework\Api\SearchCriteriaInterface|null $searchCriteria
      * @return \Gtstudio\AiKnowledgeBase\Api\Data\AiKnowledgeBaseSearchResultsInterface
      */

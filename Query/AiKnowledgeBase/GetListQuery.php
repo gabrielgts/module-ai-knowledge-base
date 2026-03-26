@@ -55,8 +55,7 @@ class GetListQuery implements GetAiKnowledgeBaseListInterface
         AiKnowledgeBaseDataMapper                    $entityDataMapper,
         SearchCriteriaBuilder                        $searchCriteriaBuilder,
         AiKnowledgeBaseSearchResultsInterfaceFactory $searchResultFactory
-    )
-    {
+    ) {
         $this->collectionProcessor = $collectionProcessor;
         $this->entityCollectionFactory = $entityCollectionFactory;
         $this->entityDataMapper = $entityDataMapper;

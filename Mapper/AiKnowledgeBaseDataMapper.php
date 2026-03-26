@@ -23,8 +23,7 @@ class AiKnowledgeBaseDataMapper
      */
     public function __construct(
         AiKnowledgeBaseInterfaceFactory $entityDtoFactory
-    )
-    {
+    ) {
         $this->entityDtoFactory = $entityDtoFactory;
     }
 

@@ -14,6 +14,7 @@ interface SaveAiKnowledgeBaseInterface
 {
     /**
      * Save AiKnowledgeBase.
+     *
      * @param \Gtstudio\AiKnowledgeBase\Api\Data\AiKnowledgeBaseInterface $aiKnowledgeBase
      * @return int
      * @throws CouldNotSaveException

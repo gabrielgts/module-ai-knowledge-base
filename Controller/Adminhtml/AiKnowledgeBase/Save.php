@@ -52,8 +52,7 @@ class Save extends Action implements HttpPostActionInterface
         DataPersistorInterface $dataPersistor,
         SaveAiKnowledgeBaseInterface $saveCommand,
         AiKnowledgeBaseInterfaceFactory $entityDataFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->dataPersistor = $dataPersistor;
         $this->saveCommand = $saveCommand;
@@ -91,7 +90,9 @@ class Save extends Action implements HttpPostActionInterface
             $this->dataPersistor->set('entity', $params);
 
             return $resultRedirect->setPath('*/*/edit', [
-                AiKnowledgeBaseInterface::ENTITY_ID => $this->getRequest()->getParam(AiKnowledgeBaseInterface::ENTITY_ID)
+                AiKnowledgeBaseInterface::ENTITY_ID => $this->getRequest()->getParam(
+                    AiKnowledgeBaseInterface::ENTITY_ID
+                )
             ]);
         }
 
